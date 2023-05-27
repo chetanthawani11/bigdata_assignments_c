@@ -1,0 +1,196 @@
+Q1. The purpose of Python's OOP is to enable programmers to create modular programs that are easy to maintain and understand by organizing code into objects that encapsulate data and behavior.
+
+Q2. An inheritance search looks for an attribute first in the instance object, then in the class object, and then in any superclasses of the class object.
+
+Q3. A class object is a blueprint for creating objects, while an instance object is a specific object created from that blueprint.
+
+Q4. The first argument in a class's method function is conventionally named self and refers to the instance object calling the method. It allows the method to access and modify the instance's attributes and methods.
+
+Q5. The purpose of the init method is to initialize the instance variables of a class when an object of that class is created.
+
+Q6. The process for creating a class instance involves using the name of the class followed by parentheses, which contain any arguments that need to be passed to the class's constructor method. For example, if we have a class called Person with a constructor method that takes two arguments (name and age), we would create an instance of the class like this: `person1 = Person("John", 30)`.
+
+Q7. The process for creating a class involves defining the class using the `class` keyword, followed by the name of the class and a colon. Inside the class definition, we can define instance variables, methods, and other attributes as needed. For example:
+
+```
+class Person:
+def __init__(self, name, age):
+self.name = name
+self.age = age
+
+def say_hello(self):
+print(f"Hello, my name is {self.name}!")
+```
+
+Q8. The superclasses of a class are the classes from which it inherits its properties and methods. In Python, we use the `super()` function to access these properties and methods from the superclass. We can define superclasses for a class by including them in parentheses after the class name in the class definition. For example:
+
+```
+class Student(Person):
+def __init__(self, name, age, major):
+super().__init__(name, age)
+self.major = major
+```
+
+Q9. Classes and modules are both constructs in Python that help in organizing code and data. A module is essentially a file containing Python definitions and statements, while a class is a blueprint for creating objects that have certain properties and behaviors. Modules can contain one or more classes, along with other functions and variables, and they can be imported into other modules or scripts. In this sense, a class can be seen as a special type of object defined within a module.
+
+Q10. To create a class in Python, you need to use the `class` keyword followed by the class name and its definition. The syntax for defining a class is:
+
+```
+class MyClass:
+# class definition
+```
+
+To create an instance of a class, you need to call the class name followed by parentheses. This will invoke the class constructor and return a new object of that class. For example:
+
+```
+my_object = MyClass()
+```
+
+Q11. Class attributes are variables that are shared by all instances of a class. They are defined inside the class definition but outside any methods. Class attributes can be accessed directly through the class name, without the need for an instance. Class attributes can be created using the following syntax:
+
+```
+class MyClass:
+attribute_name = attribute_value
+```
+
+Q12. Instance attributes are variables that belong to a specific instance of a class. They are defined inside the class methods using the `self` keyword, which refers to the current instance. Instance attributes can be accessed using dot notation, by prefixing the attribute name with the instance name. Instance attributes can be created using the following syntax:
+
+```
+class MyClass:
+def __init__(self, attribute_name):
+self.attribute_name = attribute_value
+```
+
+Q13. In Python class, "self" refers to the instance or object of the class that is currently being worked on.
+
+Q14. Python class facilitates operator overloading by providing special methods (or magic methods) with specific names that define the behavior of operators when applied to objects of the class. For example, the "__add__()" method is used to overload the "+" operator for objects of the class.
+
+Q15. Operator overloading can be allowed in classes when it makes intuitive sense and improves the readability and usability of the code. It should be avoided in cases where it might lead to confusion or ambiguous behavior.
+
+Q16. The most popular form of operator overloading is arithmetic operator overloading. This allows objects of a class to perform mathematical operations such as addition, subtraction, multiplication, and division using the standard arithmetic operators.
+
+Q17. The two most important concepts to grasp in order to comprehend Python OOP code are classes and objects. Classes define the attributes and methods that an object will have, while objects are instances of a class that hold specific values for those attributes.
+
+Q18. Three applications for exception processing are:
+
+1. Error handling: When a program encounters an error during execution, it can raise an exception. Exception processing allows you to catch and handle these errors so that your program can continue running despite encountering an unexpected issue.
+
+2. Input validation: Exception processing can also be used to validate user input. For example, if a user enters an invalid value for a variable, you can raise an exception and prompt them to enter a different value.
+
+3. Resource management: When working with external resources such as files or databases, exception processing can be used to ensure that those resources are properly opened and closed. If an error occurs while accessing the resource, the exception can trigger code to close the resource and perform any necessary cleanup.
+
+Q19. If you don't do something extra to treat an exception, the program will terminate and halt execution at the point where the exception was raised. This can cause data loss, unexpected behavior, or other issues depending on the context of the program. By handling exceptions, you can gracefully recover from errors and continue running the program.
+
+Q20.There are two options for recovering from an exception in a script:
+
+1. Handle the exception using a try-except block and perform some recovery action such as displaying an error message, logging the error or retrying the operation.
+2. Raise the exception to a higher level of the program where it can be handled.
+
+Q21. Two methods for triggering exceptions in your script are:
+
+1. Using the "raise" statement to manually raise an exception based on a certain condition or criteria.
+
+2. Invoking built-in functions that raise exceptions such as "assert" or "int".
+
+Q22. Two methods for specifying actions to be executed at termination time are:
+
+1. Using the "try...finally" block, which guarantees that a certain set of statements will be executed even if an exception occurs.
+
+2. Registering functions or callbacks to be executed at exit using the "atexit" module, which can be used to perform cleanup tasks or handle exceptions.
+
+A23. The purpose of the try statement is to identify a block of code in which an exception may occur and provide a mechanism for handling that exception.
+
+A24. The two most popular variations of the try statement are:
+
+1. try-except: This variation provides a way to catch and handle exceptions that occur within the try block.
+2. try-finally: This variation ensures that a specified block of code is executed regardless of whether an exception occurs or not.
+
+A25. The raise statement is used to raise an exception manually in a Python program. It allows you to terminate the execution of a program and provide a custom error message or exception type. The raise statement can be used in combination with try-except blocks to handle errors and exceptions.
+
+Q26. The assert statement checks if a given condition is true and raises an AssertionError if it is false. It is similar to the if statement but is used for debugging purposes.
+
+Q27. The with/as argument is used to create a context in which a resource is used and then automatically released when the block is exited. It is similar to the try/finally statement.
+
+Q28. *args and **kwargs are special syntax in Python that allow a function to accept a variable number of arguments. *args is used to pass a variable number of non-keyword arguments to a function, while **kwargs is used to pass a variable number of keyword arguments to a function.
+
+Q29. Optional or keyword parameters can be passed from one function to another by specifying them as arguments while calling the second function. For example:
+
+```
+def f1(x, y=0):
+print(x, y)
+
+def f2(a, b=1, c=2):
+f1(a, b)
+f1(c)
+
+f2(3) # Output: 3 1 \n 2 0
+f2(3, 4) # Output: 3 4 \n 2 0
+f2(3, c=5) # Output: 3 1 \n 5 0
+f2(3, b=6, c=7) # Output: 3 6 \n 7 0
+```
+
+In the above code, `f1` is a function that accepts two parameters, `x` and `y`, with a default value of 0 for `y`. `f2` is another function that accepts three parameters, `a`, `b`, and `c`. It calls `f1` twice, passing `a` and `b` as the first call's parameters and `c` as the second call's parameter. By using optional and keyword parameters in `f2`, we can modify the behavior of `f1` without changing its implementation.
+
+Q30. Lambda functions are small, anonymous functions in Python that can take any number of arguments but can only have one expression. They are defined using the `lambda` keyword, followed by the list of parameters (if any) and the expression to be evaluated. For example:
+
+```
+add = lambda x, y: x + y
+print(add(3, 4)) # Output: 7
+```
+
+In the above code, we define a lambda function `add` that takes two parameters `x` and `y` and returns their sum. We then call this function with arguments 3 and 4, which evaluates the expression `x + y` to return 7.
+
+Q31. Inheritance is a mechanism in Python that allows a child class to inherit properties and methods from its parent class. This allows us to reuse code and create new classes that are similar to existing ones. Inheritance is implemented through class inheritance, where the child class is defined with a reference to the parent class. For example:
+
+```
+class Animal:
+def __init__(self, name):
+self.name = name
+
+def speak(self):
+raise NotImplementedError("Subclass must implement abstract method")
+
+class Dog(Animal):
+def speak(self):
+return "Woof"
+
+class Cat(Animal):
+def speak(self):
+return "Meow"
+
+d = Dog("Rufus")
+print(d.name) # Output: Rufus
+print(d.speak()) # Output: Woof
+
+c = Cat("Whiskers")
+print(c.name) # Output: Whiskers
+print(c.speak()) # Output: Meow
+```
+
+In the above code, we define a parent class `Animal` with an abstract method `speak` and a child class `Dog` and `Cat`. The child classes inherit the `name` property and override the `speak` method of the parent class. We create instances of both child classes and call their respective `speak` methods, which return the appropriate animal sounds.
+
+Q32. In this case the func() from A will get invoked as python takes it according to the order of inheritance.
+
+Q33. We can use the `type()` method to determine the type of an instance, and the `issubclass()` method to determine if a class is a subclass of another. For example:
+
+```
+class Animal:
+pass
+
+class Dog(Animal):
+pass
+
+a = Animal()
+d = Dog()
+
+print(type(a)) # Output: <class '__main__.Animal'>
+print(type(d)) # Output: <class '__main__.Dog'>
+print(issubclass(Dog, Animal)) # Output: True
+print(issubclass(Animal, Dog)) # Output: False
+```
+
+In the above code, we define a parent class `Animal` and a child class `Dog`. We create instances of both classes and use the `type()` method to determine their types. We also use the `issubclass()` method to determine if `Dog` is a subclass of `Animal`.
+
+Q34. The nonlocal keyword is used to work with variables inside nested functions, where the variable should not belong to the inner function we use this keyword nonlocal to declare that the variable is not local variable.
+
+Q35. The global keyword is used to define a global variable within a function, allowing it to be accessed and modified from outside the function. It tells Python that the variable being referenced is defined in the global scope rather than the local scope.
