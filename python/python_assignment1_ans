@@ -1,0 +1,115 @@
+Q1.-> Python can be used for various purposes from backend development to building data pipelines and cloud computing, it is very easy to use and can be used on multiple platform using PVM python virtual machine hence its called a general purpose high-level programing language.
+
+Q2.-> Unlike other languages we do not need to declare data-type for the value before compilation, python stores that value at some memory location and then binds that variable name to that memory container which makes the contents of the container accessible through that variable name and the data-type is only known at runtime, hence python is called a dynamically typed language.
+
+Q3.-> Advantages of Python
+	1. Easy to use.
+	2. Interpreted Language.
+	3. Dynamically Typed.
+	4. Multi-platform/ portable.
+      Disadvantages of Python
+	1. Slower Speed than Other Languages.
+	2. Not Memory Efficient.
+	3. Python’s database access layer.
+	4. Runtime Errors.
+
+Q4.->	1. Web development.
+	2. Data science.
+	3. OS development.
+	4. Scientific programming.
+	5. Game Development.
+
+Q5.-> A variable is a reserved memory location to store values.we can declare a variable a as a=100 in python.
+
+Q6.-> To take input in python we use the built-in input() function.
+
+Q7.-> By default the input value is in string datatype.
+
+Q8.-> Converting one datatype into another is known as type casting.
+
+Q9.-> We cannot multiple individual inputs from one input function, however we can use the split() function in python to divide the input from same line into multiple values.
+
+Q10.-> Python keywords are special reserved words that have specific meanings and purposes and can't be used for anything but those specific purposes.
+
+Q11.-> No, keywords are special words that have specific purposes and can't be used as variables as they will be recognized by a keyword to execute that specific purpose.
+
+Q12.-> Python indentation refers to adding white space before a statement to a particular block of code. In another word, all the statements with the same space to the right, belong to the same code block.
+
+Q13.-> In python we output using the print statement.
+
+Q14.-> Operators are special symbols that designate that some sort of computation should be performed.
+
+Q15.-> / operater is used o divide and can return decimal values/float values but // operator returns the floor value of number.
+
+Q16.->
+		print("iNeuron"*4)
+
+Q17.->
+
+	
+	n=float(input("enter number"))
+
+	if n%2==0:
+	    print("Even Number",n)
+	else:
+	    print("Odd number",n)
+
+
+Q18.-> Boolean Operators are simple words (AND, OR, NOT or AND NOT) used as conjunctions to combine or exclude keywords in a search, resulting in more focused and productive results.
+
+Q19. ->
+	1 or 0 = 1
+	0 and 0 = 0
+	True and False and True = False
+	1 or 0 or 0 = 1
+
+Q20.-> Conditional statement is used to handle conditions in your program. These statements guide the program while making decisions based on the conditions encountered by the program.
+
+Q21.-> if, elif, else are keywords used for conditional statements and execute their code when the condition is satisfied.
+
+Q22. ->
+	age = int(input("Enter your age: "))
+if age>=18:
+    print("I can vote")
+elif age <18:
+    print("I can't vote")
+print("Thank You")
+
+Q23. ->
+
+numbers = [12,75,150,180,145,525,50]
+evenSum =0
+for i in numbers:
+    if i%2==0:
+        evenSum+=i
+    else:
+        continue
+print("The sum of all even numbers in list is",evenSum)
+
+Q24.->
+
+a = int(input("Enter First Number"))
+b = int(input("Enter Two Number"))
+c = int(input("Enter Third Number"))
+
+if a>=b:
+    if a>c:
+        print("Greatest no is",a)
+    else:
+        print("Greatest no is",c)
+else:
+    if b>c:
+        print("Greatest no is",b)
+    else:
+        print("Greatest no is",c)
+
+Q25.->
+numbers = [12, 75, 150, 180, 145, 525, 50]
+for i in numbers:
+    if i%5==0:
+        if i>500:
+            break
+        elif i>150:
+            continue
+        else:
+            print(i,end=" ")
