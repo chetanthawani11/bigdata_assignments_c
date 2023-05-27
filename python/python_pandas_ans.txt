@@ -1,0 +1,58 @@
+
+Q1.To read the CSV file in Python we need to use pandas.read_csv() function. It read the CSV file and creates the DataFrame.
+
+Q2.To check the data type in pandas DataFrame we can use the “dtype” attribute. The attribute returns a series with the data type of each column.
+
+Q3.For Selecting all the rows from the given dataframe in which ‘Percentage’ is greater than 80 we can do:
+rslt_df = dataframe[dataframe['Percentage'] > 80]
+
+Q4.We can use the rename() function:
+	df.rename(columns = {'abc':'XYZ'}, inplace = True)
+
+Q5.By using the drop() funtion 
+	df.drop(['A'], axis=1).
+
+Q6.We can use the unique() function.
+
+Q7.To get the count of missing values in each column of a dataframe, you can use the pandas isnull() and sum() functions together.
+
+Q8. We can use the fillna() function to fill unspecified values in python.
+
+Q9. We can use the concat() function:
+	vertical_concat = pd.concat([df1, df2], axis=0)
+	horizontal_concat = pd.concat([df3, df4], axis=1)
+
+Q10.We can use Merge() and on:
+	df1.merge(df2[['Grade', 'Name']], on = 'Name', how = 'left')
+
+Q11.We can use the aggregate function like:
+	df.aggregate({"Number":['sum', 'min']})
+
+Q12.Using pivot() function:
+	df.pivot(index='fff', columns='bbb', values='baa')
+
+Q13.DataFrame.astype() method is used to cast pandas object to a specified dtype. This function also provides the capability to convert any suitable existing column to a categorical type.
+
+Q14.To sort the DataFrame based on the values in a single column, we use sort_values() function.
+
+Q15.The copy() method returns a copy of the DataFrame. By default, the copy is a "deep copy" meaning that any changes made in the original DataFrame will NOT be reflected in the copy.
+
+Q16.display(dataFrame.loc[ np.where((dataFrame['Salary']>=100000) & (dataFrame['Age']< 40))])
+
+Q17.To calculate the mean of whole columns in the DataFrame, use pandas.Series.mean() with a list of DataFrame columns.
+
+Q18.Standard deviation is calculated using the function std().
+
+Q19.We can find the correlation between col1 and col2 by using df[col1].corr(df[col2]) and save the correlation value in a variable.
+
+Q20.We can just put the string name of the column in brackets. Returns a pandas series. Passing a list in the brackets lets you select multiple columns at the same time.
+
+Q21.We can use pandas iloc[] operator which is an index-based to select DataFrame rows.
+
+Q22.To sort the DataFrame based on the values in a single column, we use sort_values() function.
+
+Q23.We can add/append a new column to the DataFrame based on the values of another column using df.assign() , df.apply() , and, np.where() functions and return a new Dataframe after adding a new column.
+
+Q24.We use the drop_duplicates() method which removes duplicate rows.
+
+Q25.The distinction between the two methods is: loc gets rows (and/or columns) with particular labels. iloc gets rows (and/or columns) at integer locations.
