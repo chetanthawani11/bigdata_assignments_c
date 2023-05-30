@@ -1,0 +1,179 @@
+ARRAYS ASSIGNMENT - 1
+Q1.
+
+--------
+def targetSum(nums, target):
+    complement_dict = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in complement_dict:
+            return [complement_dict[complement], i]
+        complement_dict[num] = i
+    return []
+
+nums = [2, 7, 11, 15]
+target = 9
+result = targetSum(nums, target)
+print(result)
+
+--------
+
+Q2.
+
+--------
+
+def rmNums(nums, val):
+    k = 0
+    for i in range(len(nums)):
+        if nums[i] != val:
+            nums[k] = nums[i]
+            k += 1
+    return k
+
+nums = [3, 2, 2, 3]
+val = 3
+result = rmNums(nums, val)
+print(result)
+print(nums)
+
+--------
+
+Q3.
+
+--------
+
+def searcher(nums,target):
+        l=len(nums)-1
+        f=0
+        m=int((l+f)/2)
+        while((l-f)>2):
+            if(nums[f]==target):
+                return f
+            elif(nums[l]==target):
+                return l
+            elif(nums[m]==target):
+                return m
+            elif(nums[m]>target):
+                l=m
+                m=int((m+f)/2)
+            elif(nums[m]<target):
+                f=m
+                m=int((m+l)/2)
+        return m
+
+nums = [1,3,5,6]
+target = 5
+result = searcher(nums, target)
+print(result)
+
+--------
+
+Q4.
+
+--------
+
+def addOne(digits):
+    n = len(digits)
+    for i in range(n - 1, -1, -1):
+        if digits[i] < 9:
+            digits[i] += 1
+            return digits
+        else:
+            digits[i] = 0
+    return [1] + digits
+
+digits = [1,2,3]
+result = addOne(digits)
+print(result)
+
+--------
+
+Q5.
+
+--------
+
+def sumarr(nums1, m, nums2, n):
+    i = m - 1
+    j = n - 1
+    k = m + n - 1
+
+    while i >= 0 and j >= 0:
+        if nums1[i] > nums2[j]:
+            nums1[k] = nums1[i]
+            i -= 1
+        else:
+            nums1[k] = nums2[j]
+            j -= 1
+        k -= 1
+    while j >= 0:
+        nums1[k] = nums2[j]
+        j -= 1
+        k -= 1
+
+nums1 = [1, 2, 3, 0, 0, 0]
+m = 3
+nums2 = [2, 5, 6]
+n = 3
+
+sumarr(nums1, m, nums2, n)
+print(nums1)
+
+--------
+
+Q6.
+
+--------
+
+def isDouble(nums):
+    num_set = set()
+
+    for num in nums:
+        if num in num_set:
+            return True
+        num_set.add(num)
+
+    return False
+
+nums = [1, 2, 3, 1]
+result = isDouble(nums)
+print(result)
+
+--------
+
+Q7.
+
+--------
+
+def zeroEnd(nums):
+    n = len(nums)
+    j = 0
+    for i in range(n):
+        if nums[i] != 0:
+            nums[j] = nums[i]
+            j += 1
+    while j < n:
+        nums[j] = 0
+        j += 1
+
+nums = [0, 1, 0, 3, 12]
+zeroEnd(nums)
+print(nums)
+
+--------
+
+Q8.
+
+--------
+
+def ExtrasMissing(nums):
+    n = len(nums)
+    nums_set = set(nums)
+    duplicate = sum(nums) - sum(nums_set)
+    missing = (n * (n + 1) // 2) - sum(nums_set)
+    return [duplicate, missing]
+
+nums = [1, 2, 2, 4]
+result = ExtrasMissing(nums)
+print(result)
+
+--------
