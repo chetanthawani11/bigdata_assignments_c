@@ -1,0 +1,133 @@
+Array Assignment 4
+
+Q1.
+
+-------
+
+def find_common_elements(arr1, arr2, arr3):
+    common_elements = []
+    i, j, k = 0, 0, 0  # Pointers for arr1, arr2, arr3 respectively
+
+    while i < len(arr1) and j < len(arr2) and k < len(arr3):
+        if arr1[i] == arr2[j] == arr3[k]:
+            common_elements.append(arr1[i])
+            i += 1
+            j += 1
+            k += 1
+        elif arr1[i] < arr2[j]:
+            i += 1
+        elif arr2[j] < arr3[k]:
+            j += 1
+        else:
+            k += 1
+
+    return common_elements
+
+-------
+
+Q2.
+
+-------
+
+def find_disjoint_elements(nums1, nums2):
+    set1 = set(nums1)
+    set2 = set(nums2)
+
+    distinct_nums1 = list(set1 - set2)
+    distinct_nums2 = list(set2 - set1)
+
+    return [distinct_nums1, distinct_nums2]
+
+-------
+
+Q3.
+
+-------
+
+def transpose(matrix):
+    rows = len(matrix)
+    cols = len(matrix[0])
+
+    transposed_matrix = [[0 for row_index in range(rows)] for column_index in range(cols)]
+
+    for i in range(rows):
+        for j in range(cols):
+            transposed_matrix[j][i] = matrix[i][j]
+
+    return transposed_matrix
+
+-------
+
+Q4.
+
+-------
+
+def array_pair_sum(nums):
+    nums.sort()
+    pair_sum = 0
+    for i in range(0, len(nums), 2):
+        pair_sum += nums[i]
+    return pair_sum
+
+-------
+
+Q5.
+
+-------
+
+def arrange_coins(n):
+    complete_rows = 0
+    while n >= complete_rows + 1:
+        complete_rows += 1
+        n -= complete_rows
+    return complete_rows
+
+-------
+
+Q6.
+
+-------
+
+def sorted_squares(nums):
+    squares = [num * num for num in nums]
+    squares.sort()
+    return squares
+
+nums = [-4, -1, 0, 3, 10]
+sorted_squares_array = sorted_squares(nums)
+print(sorted_squares_array)
+
+-------
+
+Q7.
+
+-------
+
+def maxCount(m, n, ops):
+    if not ops:
+        return m * n
+    
+    min_x = float('inf')
+    min_y = float('inf')
+    
+    for op in ops:
+        min_x = min(min_x, op[0])
+        min_y = min(min_y, op[1])
+    
+    return min_x * min_y
+
+-------
+
+Q8.
+
+-------
+
+def rearrange_array(nums):
+    n = len(nums) // 2
+    rearranged = []
+    for i in range(n):
+        rearranged.append(nums[i])
+        rearranged.append(nums[i + n])
+    return rearranged
+
+-------

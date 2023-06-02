@@ -1,0 +1,143 @@
+Array Assignment 5
+
+Q1.
+
+-------
+
+def convert_to_2D_array(original, m, n):
+    if len(original) != m * n:
+        return []
+
+    two_d_array = []
+    for i in range(m):
+        row = original[i * n : (i + 1) * n]
+        two_d_array.append(row)
+
+    return two_d_array
+
+-------
+
+Q2.
+
+-------
+
+def arrange_coins(n):
+    complete_rows = 0
+    coins_needed = 1
+
+    while n >= coins_needed:
+        n -= coins_needed
+        coins_needed += 1
+        complete_rows += 1
+
+    return complete_rows
+
+-------
+
+Q3.
+
+-------
+
+def sorted_squares(nums):
+    squares = [num ** 2 for num in nums]
+    squares.sort()
+    return squares
+
+-------
+
+Q4.
+
+-------
+
+def find_disjoint(nums1, nums2):
+    set_nums1 = set(nums1)
+    set_nums2 = set(nums2)
+    distinct_nums1 = list(set_nums1 - set_nums2)
+    distinct_nums2 = list(set_nums2 - set_nums1)
+    return [distinct_nums1, distinct_nums2]
+
+-------
+
+Q5.
+
+-------
+
+def distance_value(arr1, arr2, d):
+    distance = 0
+    for num1 in arr1:
+        found = False
+        for num2 in arr2:
+            if abs(num1 - num2) <= d:
+                found = True
+                break
+        if not found:
+            distance += 1
+    return distance
+
+-------
+
+Q6.
+
+-------
+
+def find_duplicates(nums):
+    duplicates = []
+    for num in nums:
+        index = abs(num) - 1
+        if nums[index] < 0:
+            duplicates.append(abs(num))
+        else:
+            nums[index] *= -1
+    return duplicates
+
+-------
+
+Q7.
+
+-------
+
+def find_min(nums):
+    left = 0
+    right = len(nums) - 1
+
+    while left < right:
+        mid = left + (right - left) // 2
+
+        if nums[mid] > nums[right]:
+            left = mid + 1
+        else:
+            right = mid
+
+    return nums[left]
+
+-------
+
+Q8.
+
+-------
+
+def find_original(changed):
+    count = {}
+
+    for num in changed:
+        if num in count:
+            count[num] += 1
+        else:
+            count[num] = 1
+
+    original = []
+
+    for num in changed:
+        if count[num] == 0:
+            continue
+        if count.get(num * 2, 0) == 0:
+            return []
+
+        original.append(num)
+        count[num] -= 1
+        count[num * 2] -= 1
+
+    return original
+
+
+-------
