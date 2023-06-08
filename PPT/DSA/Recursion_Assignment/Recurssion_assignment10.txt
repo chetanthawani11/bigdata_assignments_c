@@ -1,0 +1,116 @@
+Recursion_assignment_10
+
+Q1.
+
+-------
+
+def isPowerOfThree(n):
+    if n == 1:
+        return True
+    elif n <= 0 or n % 3 != 0:
+        return False
+    else:
+        return isPowerOfThree(n // 3)
+
+-------
+
+Q2.
+
+-------
+
+def lastRemaining(arr):
+    if len(arr) == 1:
+        return arr[0]
+    
+    new_arr = arr[1::2]
+    result = lastRemaining(new_arr[::-1])  
+    return result
+
+-------
+
+Q3.
+
+-------
+
+def printSubsets(s, subset=""):
+    if len(s) == 0:
+        print(subset)
+    else:
+        printSubsets(s[1:], subset)
+        printSubsets(s[1:], subset + s[0])
+
+-------
+
+Q4.
+
+-------
+
+def stringLength(s):
+    if s == "":
+        return 0
+    else:
+        return 1 + stringLength(s[1:])
+
+-------
+
+Q5.
+
+-------
+
+def countSubstring(s):
+    if len(s) < 2:
+        return 0
+    else:
+        count = countSubstring(s[1:])
+        if s[0] == s[-1]:
+            count += 1
+        return count
+
+-------
+
+Q6.
+
+-------
+
+def towerOfHanoi(n, source, destination, auxiliary):
+    if n == 1:
+        print("Move disc 1 from", source, "to", destination)
+        return 1
+    else:
+        count = 0
+        count += towerOfHanoi(n-1, source, auxiliary, destination)
+        print("Move disc", n, "from", source, "to", destination)
+        count += 1
+        count += towerOfHanoi(n-1, auxiliary, destination, source)
+        return count
+
+-------
+
+Q7.
+
+-------
+
+def permute(s, l, r):
+    if l == r:
+        print(''.join(s))
+    else:
+        for i in range(l, r + 1):
+            s[l], s[i] = s[i], s[l]
+            permute(s, l + 1, r)
+            s[l], s[i] = s[i], s[l]
+
+-------
+
+Q8.
+
+-------
+
+def countConsonants(s):
+    consonants = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ"
+    count = 0
+    for char in s:
+        if char in consonants:
+            count += 1
+    return count
+
+-------
