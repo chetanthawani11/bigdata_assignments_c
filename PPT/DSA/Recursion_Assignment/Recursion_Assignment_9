@@ -1,0 +1,107 @@
+Recurssion Assignment 9
+
+Q1.
+
+-------
+def is_power_of_two(n):
+    if n == 1:
+        return True
+    elif n % 2 != 0 or n < 1:
+        return False
+    else:
+        return is_power_of_two(n // 2)
+
+
+-------
+
+Q2.
+
+-------
+
+def sumOfFirstN(n):
+    if n == 0:
+        return 0
+    return n + sumOfFirstN(n-1)
+
+-------
+
+Q3.
+
+-------
+
+def factorial(N):
+    if N == 0 or N == 1:
+        return 1
+    else:
+        return N * factorial(N - 1)
+
+-------
+
+Q4.
+
+-------
+
+def exponent(N, P):
+    if P == 0:
+        return 1
+    else:
+        return N * exponent(N, P - 1)
+
+-------
+
+Q5.
+
+-------
+
+def findMax(arr):
+    if len(arr) == 1:
+        return arr[0]
+    else:
+        return max(arr[0], findMax(arr[1:]))
+
+
+-------
+
+Q6.
+
+-------
+
+def findNthTerm(a, d, N):
+    if N == 1:
+        return a
+    else:
+        return findNthTerm(a + d, d, N - 1)
+
+-------
+
+Q7.
+
+-------
+
+def permute(S, left, right):
+    if left == right:
+        print(''.join(S))
+    else:
+        for i in range(left, right + 1):
+            S[left], S[i] = S[i], S[left]
+            permute(S, left + 1, right)
+            S[left], S[i] = S[i], S[left]
+
+
+def printPermutations(S):
+    n = len(S)
+    permute(list(S), 0, n - 1)
+
+-------
+
+Q8.
+
+-------
+
+def productOfArray(arr):
+    if len(arr) == 0:
+        return 1
+    else:
+        return arr[0] * productOfArray(arr[1:])
+
+-------
