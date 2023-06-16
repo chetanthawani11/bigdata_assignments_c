@@ -1,0 +1,121 @@
+1. Find the sum of elements in a list:
+
+```python
+def sum_of_elements(lst):
+    return sum(lst)
+
+numbers = [1, 2, 3, 4, 5]
+print("Sum of elements:", sum_of_elements(numbers))
+```
+
+2. Multiply all numbers in a list:
+
+```python
+def multiply_numbers(lst):
+    result = 1
+    for num in lst:
+        result *= num
+    return result
+
+numbers = [1, 2, 3, 4, 5]
+print("Multiplication result:", multiply_numbers(numbers))
+```
+
+3. Find the smallest number in a list:
+
+```python
+def find_smallest(lst):
+    return min(lst)
+
+numbers = [5, 2, 9, 1, 7]
+print("Smallest number:", find_smallest(numbers))
+```
+
+4. Find the largest number in a list:
+
+```python
+def find_largest(lst):
+    return max(lst)
+
+numbers = [5, 2, 9, 1, 7]
+print("Largest number:", find_largest(numbers))
+```
+
+5. Find the second largest number in a list:
+
+```python
+def find_second_largest(lst):
+    sorted_lst = sorted(lst)
+    return sorted_lst[-2]
+
+numbers = [5, 2, 9, 1, 7]
+print("Second largest number:", find_second_largest(numbers))
+```
+
+6. Find the N largest elements from a list:
+
+```python
+def find_n_largest(lst, n):
+    sorted_lst = sorted(lst, reverse=True)
+    return sorted_lst[:n]
+
+numbers = [5, 2, 9, 1, 7, 3, 8]
+n = 3
+print(f"{n} largest elements:", find_n_largest(numbers, n))
+```
+
+7. Print even numbers in a list:
+
+```python
+def print_even_numbers(lst):
+    even_nums = [num for num in lst if num % 2 == 0]
+    print("Even numbers:", even_nums)
+
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+print_even_numbers(numbers)
+```
+
+8. Print odd numbers in a list:
+
+```python
+def print_odd_numbers(lst):
+    odd_nums = [num for num in lst if num % 2 != 0]
+    print("Odd numbers:", odd_nums)
+
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+print_odd_numbers(numbers)
+```
+
+9. Remove empty lists from a list:
+
+```python
+def remove_empty_lists(lst):
+    filtered_lst = [sublst for sublst in lst if sublst]
+    return filtered_lst
+
+my_list = [1, [], [2, 3], [], 4, [], [5, 6]]
+print("List after removing empty lists:", remove_empty_lists(my_list))
+```
+
+10. Clone or copy a list:
+
+```python
+def clone_list(lst):
+    return lst.copy()
+
+original_list = [1, 2, 3, 4, 5]
+cloned_list = clone_list(original_list)
+print("Original list:", original_list)
+print("Cloned list:", cloned_list)
+```
+
+11. Count occurrences of an element in a list:
+
+```python
+def count_occurrences(lst, element):
+    return lst.count(element)
+
+numbers = [1, 2, 3, 4, 2, 5, 2]
+element = 2
+print(f"Occurrences of {element}:", count_occurrences(numbers, element))
+```

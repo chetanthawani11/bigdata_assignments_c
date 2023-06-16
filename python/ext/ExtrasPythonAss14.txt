@@ -1,0 +1,113 @@
+1. Class with a generator to iterate numbers divisible by 7:
+
+```python
+class DivisibleBySeven:
+    def __init__(self, n):
+        self.n = n
+    
+    def divisible_by_seven_generator(self):
+        for num in range(self.n + 1):
+            if num % 7 == 0:
+                yield num
+
+n = 50
+divisible_by_seven = DivisibleBySeven(n)
+generator = divisible_by_seven.divisible_by_seven_generator()
+for num in generator:
+    print(num)
+```
+
+2. Program to compute the frequency of words from input:
+
+```python
+def word_frequency(sentence):
+    words = sentence.split()
+    word_count = {}
+    for word in words:
+        if word in word_count:
+            word_count[word] += 1
+        else:
+            word_count[word] = 1
+    sorted_word_count = sorted(word_count.items())
+    return sorted_word_count
+
+sentence = "hello world hello python programming world"
+frequency = word_frequency(sentence)
+for word, count in frequency:
+    print(f"{word}: {count}")
+```
+
+3. Class inheritance example with Person, Male, and Female classes:
+
+```python
+class Person:
+    def get_gender(self):
+        print("Unknown")
+
+class Male(Person):
+    def get_gender(self):
+        print("Male")
+
+class Female(Person):
+    def get_gender(self):
+        print("Female")
+
+person = Person()
+person.get_gender()
+
+male = Male()
+male.get_gender()
+
+female = Female()
+female.get_gender()
+```
+
+4. Program to generate sentences with given subject, verb, and object lists:
+
+```python
+subjects = ["I", "You"]
+verbs = ["Play", "Love"]
+objects = ["Hockey", "Football"]
+
+sentences = [(subject, verb, obj) for subject in subjects for verb in verbs for obj in objects]
+for sentence in sentences:
+    print(" ".join(sentence))
+```
+
+5. Program to compress and decompress a string using zlib:
+
+```python
+import zlib
+
+string = "hello world!hello world!hello world!hello world!"
+compressed = zlib.compress(string.encode())
+print(f"Compressed string: {compressed}")
+
+decompressed = zlib.decompress(compressed)
+print(f"Decompressed string: {decompressed.decode()}")
+```
+
+6. Binary search function to search an item in a sorted list:
+
+```python
+def binary_search(arr, item):
+    low = 0
+    high = len(arr) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+        guess = arr[mid]
+        if guess == item:
+            return mid
+        if guess < item:
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    return -1
+
+sorted_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+item_to_search = 6
+index = binary_search(sorted_list, item_to_search)
+print(f"Index of {item_to_search}: {index}")
+```

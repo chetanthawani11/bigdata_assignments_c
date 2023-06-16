@@ -1,0 +1,119 @@
+1. Extract unique values from dictionary values:
+
+```python
+def extract_unique_values(dictionary):
+    unique_values = set()
+    for values in dictionary.values():
+        if isinstance(values, list):
+            unique_values.update(values)
+        else:
+            unique_values.add(values)
+    return unique_values
+
+my_dict = {
+    "a": [1, 2, 3],
+    "b": [2, 3, 4],
+    "c": 5,
+    "d": 6
+}
+
+unique_values = extract_unique_values(my_dict)
+print(f"Unique values: {unique_values}")
+```
+
+2. Find the sum of all items in a dictionary:
+
+```python
+def sum_dictionary(dictionary):
+    values_sum = sum(dictionary.values())
+    return values_sum
+
+my_dict = {
+    "a": 1,
+    "b": 2,
+    "c": 3,
+    "d": 4
+}
+
+total_sum = sum_dictionary(my_dict)
+print(f"Sum of all items: {total_sum}")
+```
+
+3. Merge two dictionaries:
+
+```python
+def merge_dictionaries(dict1, dict2):
+    merged_dict = {**dict1, **dict2}
+    return merged_dict
+
+dict1 = {"a": 1, "b": 2}
+dict2 = {"c": 3, "d": 4}
+
+merged = merge_dictionaries(dict1, dict2)
+print(f"Merged dictionary: {merged}")
+```
+
+4. Convert key-values list to a flat dictionary:
+
+```python
+def convert_to_flat_dictionary(key_value_list):
+    flat_dict = dict(key_value_list)
+    return flat_dict
+
+key_values = [("a", 1), ("b", 2), ("c", 3)]
+flat_dictionary = convert_to_flat_dictionary(key_values)
+print(f"Flat dictionary: {flat_dictionary}")
+```
+
+5. Insertion at the beginning in OrderedDict:
+
+```python
+from collections import OrderedDict
+
+def insert_at_beginning(dictionary, key, value):
+    dictionary.pop(key, None)
+    dictionary.move_to_end(key, last=False)
+    dictionary[key] = value
+
+ordered_dict = OrderedDict([("a", 1), ("b", 2), ("c", 3)])
+insert_at_beginning(ordered_dict, "d", 4)
+print(f"Updated OrderedDict: {ordered_dict}")
+```
+
+6. Check the order of characters in a string using OrderedDict:
+
+```python
+from collections import OrderedDict
+
+def check_order(string, pattern):
+    ordered_dict = OrderedDict.fromkeys(string)
+    pattern_length = 0
+    for key in ordered_dict:
+        if key == pattern[pattern_length]:
+            pattern_length += 1
+        if pattern_length == len(pattern):
+            return True
+    return False
+
+text = "Hello, world!"
+pattern = "lo"
+has_order = check_order(text, pattern)
+print(f"The order of '{pattern}' in '{text}': {has_order}")
+```
+
+7. Sort Python dictionaries by key or value:
+
+```python
+def sort_dictionary(dictionary, by_key=True):
+    if by_key:
+        sorted_dict = dict(sorted(dictionary.items()))
+    else:
+        sorted_dict = dict(sorted(dictionary.items(), key=lambda item: item[1]))
+    return sorted_dict
+
+my_dict = {"b": 2, "c": 3, "a": 1}
+sorted_by_key = sort_dictionary(my_dict, by_key=True)
+sorted_by_value = sort_dictionary(my_dict, by_key=False)
+print(f"Sorted by key: {sorted_by_key}")
+print(f"Sorted by value: {sorted_by_value}")
+```

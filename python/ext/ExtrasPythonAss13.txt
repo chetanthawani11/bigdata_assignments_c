@@ -1,0 +1,95 @@
+1. Program to calculate and print the value according to the given formula:
+
+```python
+import math
+
+def calculate_value(C, D, H):
+    Q = math.sqrt((2 * C * D) / H)
+    return Q
+
+C = 50
+D = 30
+H = 10
+result = calculate_value(C, D, H)
+print(f"The calculated value is: {result}")
+```
+
+2. Program to generate a 2-dimensional array based on input digits:
+
+```python
+def generate_2D_array(X, Y):
+    array = [[i * j for j in range(Y)] for i in range(X)]
+    return array
+
+X = 3
+Y = 4
+result = generate_2D_array(X, Y)
+print(f"The generated 2-dimensional array is:")
+for row in result:
+    print(row)
+```
+
+3. Program to sort comma-separated words alphabetically:
+
+```python
+def sort_words(sentence):
+    words = sentence.split(",")
+    sorted_words = sorted(words)
+    sorted_sentence = ",".join(sorted_words)
+    return sorted_sentence
+
+sentence = "hello,world,python,programming"
+sorted_sentence = sort_words(sentence)
+print(f"The sorted sentence is: {sorted_sentence}")
+```
+
+4. Program to remove duplicate words and sort them alphanumerically:
+
+```python
+def remove_duplicates(sentence):
+    words = sentence.split()
+    unique_words = sorted(set(words))
+    cleaned_sentence = " ".join(unique_words)
+    return cleaned_sentence
+
+sentence = "hello world hello python programming"
+cleaned_sentence = remove_duplicates(sentence)
+print(f"The cleaned sentence is: {cleaned_sentence}")
+```
+
+5. Program to calculate the number of letters and digits in a sentence:
+
+```python
+def count_letters_digits(sentence):
+    letters = sum(char.isalpha() for char in sentence)
+    digits = sum(char.isdigit() for char in sentence)
+    return letters, digits
+
+sentence = "Hello123World"
+letter_count, digit_count = count_letters_digits(sentence)
+print(f"Number of letters: {letter_count}")
+print(f"Number of digits: {digit_count}")
+```
+
+6. Program to check the validity of a user's password:
+
+```python
+import re
+
+def check_password_validity(password):
+    if len(password) < 6 or len(password) > 12:
+        return False
+    if not re.search(r"\d", password):
+        return False
+    if not re.search(r"[a-z]", password):
+        return False
+    if not re.search(r"[A-Z]", password):
+        return False
+    if not re.search(r"[@#$]", password):
+        return False
+    return True
+
+password = "Password123@"
+is_valid = check_password_validity(password)
+print(f"The password is valid: {is_valid}")
+```

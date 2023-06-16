@@ -1,0 +1,92 @@
+1. Find words greater than a given length:
+
+```python
+def find_long_words(string, k):
+    words = string.split()
+    long_words = [word for word in words if len(word) > k]
+    return long_words
+
+text = "This is a sample text with words of varying lengths"
+k = 4
+print(f"Words greater than length {k}: {find_long_words(text, k)}")
+```
+
+2. Remove i-th character from a string:
+
+```python
+def remove_character(string, i):
+    new_string = string[:i] + string[i+1:]
+    return new_string
+
+text = "Python"
+i = 3
+print(f"String after removing character at index {i}: {remove_character(text, i)}")
+```
+
+3. Split and join a string:
+
+```python
+def split_and_join(string):
+    words = string.split()
+    new_string = "-".join(words)
+    return new_string
+
+text = "This is a sample string"
+print(f"Split and joined string: {split_and_join(text)}")
+```
+
+4. Check if a given string is a binary string:
+
+```python
+def is_binary_string(string):
+    for char in string:
+        if char != '0' and char != '1':
+            return False
+    return True
+
+text = "101010"
+print(f"{text} is a binary string: {is_binary_string(text)}")
+```
+
+5. Find uncommon words from two strings:
+
+```python
+def find_uncommon_words(string1, string2):
+    words1 = set(string1.split())
+    words2 = set(string2.split())
+    uncommon_words = words1.symmetric_difference(words2)
+    return uncommon_words
+
+text1 = "This is string one"
+text2 = "This is string two"
+print(f"Uncommon words: {find_uncommon_words(text1, text2)}")
+```
+
+6. Find all duplicate characters in a string:
+
+```python
+def find_duplicate_characters(string):
+    duplicates = []
+    for char in string:
+        if string.count(char) > 1 and char not in duplicates:
+            duplicates.append(char)
+    return duplicates
+
+text = "Hello World"
+print(f"Duplicate characters: {find_duplicate_characters(text)}")
+```
+
+7. Check if a string contains any special character:
+
+```python
+import re
+
+def contains_special_character(string):
+    pattern = r'[^a-zA-Z0-9\s]'
+    if re.search(pattern, string):
+        return True
+    return False
+
+text = "Hello! How are you?"
+print(f"String contains special character: {contains_special_character(text)}")
+```

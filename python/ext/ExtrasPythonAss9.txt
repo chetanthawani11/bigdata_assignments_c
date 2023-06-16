@@ -1,0 +1,102 @@
+
+1. Check if the given number is a Disarium Number:
+
+```python
+def is_disarium_number(num):
+    digit_count = len(str(num))
+    sum = 0
+    temp = num
+    while temp > 0:
+        digit = temp % 10
+        sum += digit ** digit_count
+        digit_count -= 1
+        temp //= 10
+    return num == sum
+
+number = 135
+if is_disarium_number(number):
+    print(f"{number} is a Disarium Number")
+else:
+    print(f"{number} is not a Disarium Number")
+```
+
+2. Print all Disarium Numbers between 1 and 100:
+
+```python
+def is_disarium_number(num):
+    digit_count = len(str(num))
+    sum = 0
+    temp = num
+    while temp > 0:
+        digit = temp % 10
+        sum += digit ** digit_count
+        digit_count -= 1
+        temp //= 10
+    return num == sum
+
+print("Disarium Numbers between 1 and 100:")
+for number in range(1, 101):
+    if is_disarium_number(number):
+        print(number)
+```
+
+3. Check if the given number is a Happy Number:
+
+```python
+def is_happy_number(num):
+    seen = set()
+    while num != 1:
+        num = sum(int(digit) ** 2 for digit in str(num))
+        if num in seen:
+            return False
+        seen.add(num)
+    return True
+
+number = 19
+if is_happy_number(number):
+    print(f"{number} is a Happy Number")
+else:
+    print(f"{number} is not a Happy Number")
+```
+
+4. Print all Happy Numbers between 1 and 100:
+
+```python
+def is_happy_number(num):
+    seen = set()
+    while num != 1:
+        num = sum(int(digit) ** 2 for digit in str(num))
+        if num in seen:
+            return False
+        seen.add(num)
+    return True
+
+print("Happy Numbers between 1 and 100:")
+for number in range(1, 101):
+    if is_happy_number(number):
+        print(number)
+```
+
+5. Determine whether the given number is a Harshad Number:
+
+```python
+def is_harshad_number(num):
+    digit_sum = sum(int(digit) for digit in str(num))
+    return num % digit_sum == 0
+
+number = 18
+if is_harshad_number(number):
+    print(f"{number} is a Harshad Number")
+else:
+    print(f"{number} is not a Harshad Number")
+```
+
+6. Print all Pronic Numbers between 1 and 100:
+
+```python
+print("Pronic Numbers between 1 and 100:")
+for number in range(1, 101):
+    square_root = int(number ** 0.5)
+    if square_root * (square_root + 1) == number:
+        print(number)
+```

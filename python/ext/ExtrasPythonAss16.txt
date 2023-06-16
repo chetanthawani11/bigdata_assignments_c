@@ -1,0 +1,65 @@
+1. Function to stutter a word:
+
+```python
+def stutter(word):
+    stuttered_word = word[:2] + "... " + word[:2] + "... " + word + "?"
+    return stuttered_word
+
+word = input("Enter a word: ")
+stuttered = stutter(word)
+print(stuttered)
+```
+
+2. Function to convert radians to degrees:
+
+```python
+import math
+
+def radians_to_degrees(radians):
+    degrees = math.degrees(radians)
+    return round(degrees, 1)
+
+radians = float(input("Enter the angle in radians: "))
+degrees = radians_to_degrees(radians)
+print("Degrees:", degrees)
+```
+
+3. Function to check if a number is a Curzon number:
+
+```python
+def is_curzon_number(num):
+    numerator = 2 ** num + 1
+    denominator = 2 * num + 1
+    if numerator % denominator == 0:
+        return True
+    else:
+        return False
+
+num = int(input("Enter a number: "))
+is_curzon = is_curzon_number(num)
+print("Is Curzon number:", is_curzon)
+```
+
+4. Function to calculate the area of a hexagon:
+
+```python
+def calculate_hexagon_area(side_length):
+    area = (3 * math.sqrt(3) * side_length ** 2) / 2
+    return area
+
+side_length = float(input("Enter the side length of the hexagon: "))
+area = calculate_hexagon_area(side_length)
+print("Area of the hexagon:", area)
+```
+
+5. Function to convert decimal to binary representation:
+
+```python
+def decimal_to_binary(decimal):
+    binary = bin(decimal)[2:]
+    return binary
+
+decimal = int(input("Enter a decimal number: "))
+binary = decimal_to_binary(decimal)
+print("Binary representation:", binary)
+```
