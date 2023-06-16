@@ -1,0 +1,77 @@
+1. Convert kilometers to miles:
+
+```python
+kilometers = float(input("Enter distance in kilometers: "))
+
+conversion_factor = 0.621371
+
+miles = kilometers * conversion_factor
+
+print("Distance in miles:", miles)
+```
+
+2. Convert Celsius to Fahrenheit:
+
+```python
+celsius = float(input("Enter temperature in Celsius: "))
+
+fahrenheit = (celsius * 9/5) + 32
+
+print("Temperature in Fahrenheit:", fahrenheit)
+```
+
+3. Display calendar:
+
+```python
+import calendar
+
+year = int(input("Enter year: "))
+month = int(input("Enter month: "))
+
+print(calendar.month(year, month))
+```
+
+4. Solve quadratic equation:
+
+```python
+import math
+
+a = float(input("Enter coefficient a: "))
+b = float(input("Enter coefficient b: "))
+c = float(input("Enter coefficient c: "))
+
+discriminant = b**2 - 4*a*c
+
+if discriminant > 0:
+    root1 = (-b + math.sqrt(discriminant)) / (2*a)
+    root2 = (-b - math.sqrt(discriminant)) / (2*a)
+    print("Root 1:", root1)
+    print("Root 2:", root2)
+elif discriminant == 0:
+    root = -b / (2*a)
+    print("Root:", root)
+else:
+    real_part = -b / (2*a)
+    imaginary_part = math.sqrt(abs(discriminant)) / (2*a)
+    root1 = complex(real_part, imaginary_part)
+    root2 = complex(real_part, -imaginary_part)
+    print("Root 1:", root1)
+    print("Root 2:", root2)
+```
+
+5. Swap two variables without a temporary variable:
+
+```python
+a = 10
+b = 5
+
+print("Before swap:")
+print("a =", a)
+print("b =", b)
+
+a, b = b, a
+
+print("After swap:")
+print("a =", a)
+print("b =", b)
+```

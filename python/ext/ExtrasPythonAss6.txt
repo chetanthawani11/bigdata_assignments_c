@@ -1,0 +1,77 @@
+
+1. Display Fibonacci Sequence Using Recursion:
+
+```python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+
+terms = int(input("Enter the number of terms: "))
+
+if terms <= 0:
+    print("Please enter a positive integer.")
+else:
+    print("Fibonacci Sequence:")
+    for i in range(terms):
+        print(fibonacci(i))
+```
+
+2. Find Factorial of a Number Using Recursion:
+
+```python
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+
+number = int(input("Enter a number: "))
+
+if number < 0:
+    print("Factorial is not defined for negative numbers.")
+else:
+    result = factorial(number)
+    print("Factorial of", number, "is", result)
+```
+
+3. Calculate Body Mass Index (BMI):
+
+```python
+height = float(input("Enter your height in meters: "))
+weight = float(input("Enter your weight in kilograms: "))
+
+bmi = weight / (height ** 2)
+
+print("Your Body Mass Index (BMI) is:", bmi)
+```
+
+4. Calculate the Natural Logarithm of any Number:
+
+```python
+import math
+
+number = float(input("Enter a number: "))
+
+if number <= 0:
+    print("Logarithm is not defined for non-positive numbers.")
+else:
+    logarithm = math.log(number)
+    print("The natural logarithm of", number, "is", logarithm)
+```
+
+5. Calculate the Cube Sum of First n Natural Numbers:
+
+```python
+def cube_sum(n):
+    return (n * (n + 1) // 2) ** 2
+
+
+n = int(input("Enter the value of n: "))
+
+result = cube_sum(n)
+print("The cube sum of first", n, "natural numbers is", result)
+```
