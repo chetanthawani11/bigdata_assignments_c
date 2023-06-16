@@ -1,0 +1,218 @@
+Stacks_Assignment_15
+
+
+Q1.
+
+-------
+
+def findNextGreaterElements(arr):
+    n = len(arr)
+    result = [-1] * n
+    stack = []
+
+    for i in range(n):
+        while stack and arr[i] > arr[stack[-1]]:
+            top = stack.pop()
+            result[top] = arr[i]
+
+        stack.append(i)
+
+    return result
+
+
+-------
+
+Q2.
+
+-------
+
+def findNearestSmallerElements(a):
+    n = len(a)
+    result = [-1] * n
+    stack = []
+
+    for i in range(n):
+        while stack and a[i] <= a[stack[-1]]:
+            stack.pop()
+
+        if stack:
+            result[i] = a[stack[-1]]
+
+        stack.append(i)
+
+    return result
+
+
+-------
+
+Q3.
+
+-------
+
+from collections import deque
+
+class Stack:
+    def __init__(self):
+        self.q1 = deque()
+        self.q2 = deque()
+
+    def push(self, element):
+        self.q1.append(element)
+
+    def pop(self):
+        if not self.q1:
+            return "Stack is empty"
+        
+        while len(self.q1) > 1:
+            self.q2.append(self.q1.popleft())
+        
+        return self.q1.popleft()
+
+    def top(self):
+        if not self.q1:
+            return "Stack is empty"
+        
+        while len(self.q1) > 1:
+            self.q2.append(self.q1.popleft())
+        
+        top_element = self.q1[0]
+        self.q2.append(self.q1.popleft())
+        
+        self.q1, self.q2 = self.q2, self.q1
+        
+        return top_element
+
+    def empty(self):
+        return not self.q1 and not self.q2
+
+
+-------
+
+Q4.
+
+-------
+
+def reverseStack(stack):
+    if len(stack) <= 1:
+        return
+
+    top_element = stack.pop()
+    reverseStack(stack)
+    insertAtBottom(stack, top_element)
+
+
+def insertAtBottom(stack, element):
+    if len(stack) == 0:
+        stack.append(element)
+        return
+
+    top_element = stack.pop()
+    insertAtBottom(stack, element)
+    stack.append(top_element)
+
+
+-------
+
+Q5.
+
+-------
+
+def reverseString(S):
+    stack = []
+    for char in S:
+        stack.append(char)
+
+    reversed_string = ""
+    while stack:
+        reversed_string += stack.pop()
+
+    return reversed_string
+
+
+-------
+
+Q6.
+
+-------
+
+def evaluatePostfixExpression(S):
+    stack = []
+
+    for char in S:
+        if char.isdigit():
+            stack.append(int(char))
+        else:
+            operand2 = stack.pop()
+            operand1 = stack.pop()
+
+            if char == '+':
+                result = operand1 + operand2
+            elif char == '-':
+                result = operand1 - operand2
+            elif char == '*':
+                result = operand1 * operand2
+            elif char == '/':
+                result = operand1 / operand2
+
+            stack.append(result)
+
+    return stack.pop()
+
+
+-------
+
+Q7.
+
+-------
+
+class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
+
+    def push(self, val):
+        self.stack.append(val)
+        if not self.min_stack or val <= self.min_stack[-1]:
+            self.min_stack.append(val)
+
+    def pop(self):
+        if self.stack[-1] == self.min_stack[-1]:
+            self.min_stack.pop()
+        self.stack.pop()
+
+    def top(self):
+        return self.stack[-1]
+
+    def getMin(self):
+        return self.min_stack[-1]
+
+
+-------
+
+Q8.
+
+-------
+
+def trap(height):
+    left = 0
+    right = len(height) - 1
+    left_max = right_max = water = 0
+
+    while left <= right:
+        if height[left] <= height[right]:
+            if height[left] > left_max:
+                left_max = height[left]
+            else:
+                water += left_max - height[left]
+            left += 1
+        else:
+            if height[right] > right_max:
+                right_max = height[right]
+            else:
+                water += right_max - height[right]
+            right -= 1
+
+    return water
+
+
+-------
