@@ -1,0 +1,211 @@
+Stacks_Assignment_16
+
+
+Q1.
+
+-------
+
+def findNearestGreaterFrequency(nums):
+    frequency = {}
+    stack = []
+    result = []
+
+    for num in reversed(nums):
+        if num not in frequency:
+            frequency[num] = 0
+        frequency[num] += 1
+        stack.append(num)
+
+    for num in nums:
+        while stack and frequency[stack[-1]] <= frequency[num]:
+            stack.pop()
+        if not stack:
+            result.append(-1)
+        else:
+            result.append(stack[-1])
+        stack.append(num)
+
+    return list(reversed(result))
+
+
+-------
+
+Q2.
+
+-------
+
+def sortStack(stack):
+    temp_stack = []
+
+    while stack:
+        temp = stack.pop()
+
+        while temp_stack and temp_stack[-1] > temp:
+            stack.append(temp_stack.pop())
+
+        temp_stack.append(temp)
+
+    return temp_stack
+
+
+-------
+
+Q3.
+
+-------
+
+def deleteMiddle(stack, index):
+    if len(stack) == 0 or index == len(stack) // 2:
+        stack.pop()
+        return
+
+    temp = stack.pop()
+    deleteMiddle(stack, index + 1)
+    stack.append(temp)
+
+-------
+
+Q4.
+
+-------
+
+from queue import Queue
+
+def checkIncreasingOrder(queue):
+    stack = []
+    aux_queue = Queue()
+
+    while not queue.empty():
+        curr = queue.get()
+
+        while stack and stack[-1] > curr:
+            aux_queue.put(stack.pop())
+
+        stack.append(curr)
+
+    while stack:
+        aux_queue.put(stack.pop())
+
+    while not aux_queue.empty():
+        queue.put(aux_queue.get())
+
+    prev = queue.get()
+
+    while not queue.empty():
+        curr = queue.get()
+
+        if curr < prev:
+            return False
+
+        prev = curr
+
+    return True
+
+
+-------
+
+Q5.
+
+-------
+
+def reverseNumber(number):
+    stack = []
+    numberStr = str(number)
+
+    for digit in numberStr:
+        stack.append(digit)
+
+    reversedNumber = ""
+    while stack:
+        reversedNumber += stack.pop()
+
+    reversedNumber = int(reversedNumber)
+
+    return reversedNumber
+
+
+-------
+
+Q6.
+
+-------
+
+from queue import Queue
+
+def reverseFirstKElements(queue, k):
+    stack = []
+    size = queue.qsize()
+
+    for _ in range(k):
+        stack.append(queue.get())
+
+    while not queue.empty():
+        queue.get()
+
+    while stack:
+        queue.put(stack.pop())
+
+    return queue
+
+
+-------
+
+Q7.
+
+-------
+
+
+def countWordsLeft(sequence):
+    stack = []
+
+    for word in sequence:
+        if len(stack) == 0 or word != stack[-1]:
+            stack.append(word)
+        else:
+            stack.pop()
+
+    return len(stack)
+
+
+-------
+
+Q8.
+
+-------
+
+def maxAbsoluteDifference(arr):
+    stack = []
+    leftSmaller = []
+
+    for i in range(len(arr)):
+        while stack and stack[-1] >= arr[i]:
+            stack.pop()
+
+        if not stack:
+            leftSmaller.append(0)
+        else:
+            leftSmaller.append(stack[-1])
+
+        stack.append(arr[i])
+
+    stack = []
+    maxDiff = float('-inf')
+
+    for i in range(len(arr)-1, -1, -1):
+        while stack and stack[-1] >= arr[i]:
+            stack.pop()
+
+        if not stack:
+            rightSmaller = 0
+        else:
+            rightSmaller = stack[-1]
+
+        diff = abs(leftSmaller[i] - rightSmaller)
+        maxDiff = max(maxDiff, diff)
+
+        stack.append(arr[i])
+
+    return maxDiff
+
+
+-------
