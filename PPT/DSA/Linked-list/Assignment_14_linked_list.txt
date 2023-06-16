@@ -1,0 +1,304 @@
+Linked_list_Assignment_14
+
+
+Q1.
+
+-------
+
+def remove_loop(head):
+    if not head or not head.next:
+        return head
+    
+    slow_ptr = fast_ptr = head
+    has_loop = False
+    
+    while fast_ptr and fast_ptr.next:
+        slow_ptr = slow_ptr.next
+        fast_ptr = fast_ptr.next.next
+        
+        if slow_ptr == fast_ptr:
+            has_loop = True
+            break
+    
+    if not has_loop:
+        return head
+    
+    slow_ptr = head
+    while slow_ptr.next != fast_ptr.next:
+        slow_ptr = slow_ptr.next
+        fast_ptr = fast_ptr.next
+    
+    fast_ptr.next = None
+    
+    return head
+
+
+-------
+
+Q2.
+
+-------
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def addOne(head):
+    current = head
+    last_non_nine = None
+
+    while current:
+        if current.val != 9:
+            last_non_nine = current
+        current = current.next
+
+    if last_non_nine:
+        last_non_nine.val += 1
+        current = last_non_nine.next
+        while current:
+            current.val = 0
+            current = current.next
+
+    elif last_non_nine is None:
+        new_node = ListNode(1)
+        new_node.next = head
+        current = head
+        while current:
+            current.val = 0
+            current = current.next
+
+        return new_node
+
+    return head
+
+
+-------
+
+Q3.
+
+-------
+
+class ListNode:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.bottom = None
+
+
+def merge(a, b):
+    if a is None:
+        return b
+    if b is None:
+        return a
+
+    result = None
+
+    if a.data <= b.data:
+        result = a
+        result.bottom = merge(a.bottom, b)
+    else:
+        result = b
+        result.bottom = merge(a, b.bottom)
+
+    result.next = None
+    return result
+
+
+def flatten(head):
+    if head is None or head.next is None:
+        return head
+
+    head.next = flatten(head.next)
+
+    head = merge(head, head.next)
+
+    return head
+
+
+-------
+
+Q4.
+
+-------
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.random = None
+
+
+def copyRandomList(head):
+    if not head:
+        return None
+
+    hashmap = {}
+    curr = head
+    while curr:
+        new_node = Node(curr.data)
+        hashmap[curr] = new_node
+        curr = curr.next
+
+    curr = head
+    while curr:
+        new_node = hashmap[curr]
+        new_node.next = hashmap.get(curr.next)
+        new_node.random = hashmap.get(curr.random)
+        curr = curr.next
+
+    return hashmap[head]
+
+
+-------
+
+Q5.
+
+-------
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+def oddEvenList(head):
+    if not head or not head.next:
+        return head
+
+    odd = head
+    even = head.next
+    even_head = even  
+    while even and even.next:
+        odd.next = even.next
+        odd = odd.next
+        even.next = odd.next
+        even = even.next
+
+    odd.next = even_head
+
+    return head
+
+
+-------
+
+Q6.
+
+-------
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+def leftShift(head, k):
+    if not head or k == 0:
+        return head
+
+    length = 0
+    curr = head
+    while curr:
+        length += 1
+        curr = curr.next
+
+    k = k % length
+
+    if k == 0:
+        return head
+
+    first = head
+    second = head
+
+    for _ in range(k):
+        second = second.next
+
+    while second.next:
+        first = first.next
+        second = second.next
+
+    new_head = first.next
+    first.next = None
+    second.next = head
+
+    return new_head
+
+
+-------
+
+Q7.
+
+-------
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+def nextLargerNodes(head):
+    arr = []
+    curr = head
+    while curr:
+        arr.append(curr.val)
+        curr = curr.next
+
+    n = len(arr)
+    answer = [0] * n
+    stack = []
+
+    for i in range(n - 1, -1, -1):
+        while stack and arr[i] >= arr[stack[-1]]:
+            stack.pop()
+
+        if stack:
+            answer[i] = arr[stack[-1]]
+
+        stack.append(i)
+
+    return answer
+
+
+
+-------
+
+Q8.
+
+-------
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+def removeZeroSumSublists(head):
+    dummy = ListNode(0)
+    dummy.next = head
+
+    cumulative_sum = 0
+    hashmap = {0: dummy}
+
+    curr = head
+    while curr:
+        cumulative_sum += curr.val
+
+        if cumulative_sum in hashmap:
+            prev = hashmap[cumulative_sum]
+            prev.next = curr.next
+
+            temp = cumulative_sum + prev.next.val
+            while temp != cumulative_sum:
+                del hashmap[temp]
+                prev = prev.next
+                temp += prev.next.val
+
+        else:
+            hashmap[cumulative_sum] = curr
+
+        curr = curr.next
+
+    return dummy.next
+
+
+-------
