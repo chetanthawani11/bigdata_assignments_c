@@ -1,0 +1,113 @@
+Q1. Write a PySpark code to read a CSV file named "employees.csv" containing the following columns: "employee_id", "name", "age", "department". Display the top 10 records from the DataFrame.
+--------------
+
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.getOrCreate()
+df = spark.read.csv("employees.csv", header=True, inferSchema=True)
+df.show(10)
+
+---------------
+
+Q2.  Given a PySpark DataFrame named "sales_data" with columns "product_name" and "revenue", write a code to calculate the total revenue for each product and display the result in descending order.
+-------------------
+
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import sum
+from pyspark.sql.window import Window
+from pyspark.sql.functions import desc
+spark = SparkSession.builder.getOrCreate()
+total_revenue_df = sales_data.groupBy("product_name").agg(sum("revenue").alias("total_revenue"))
+ordered_df = total_revenue_df.orderBy(desc("total_revenue"))
+ordered_df.show()
+
+------------------------
+
+Q3.Write a PySpark code to read a JSON file named "students.json" containing student records with the following schema: "name" (string), "age" (integer), "grade" (string). Filter the DataFrame to include only students whose age is greater than 18.
+------------------------
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col
+spark = SparkSession.builder.getOrCreate()
+df = spark.read.json("students.json")
+filtered_df = df.filter(col("age") > 18)
+filtered_df.show()
+-------------------------
+
+Q4.Consider a PySpark DataFrame named "transactions" with columns "transaction_id", "user_id", and "amount". Write a code to calculate the average transaction amount for each user and display the result.
+-----------------------------
+
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import avg
+spark = SparkSession.builder.getOrCreate()
+avg_amount_df = transactions.groupBy("user_id").agg(avg("amount").alias("avg_transaction_amount"))
+avg_amount_df.show()
+
+-----------------------------
+
+Q5.Given a PySpark DataFrame named "logs" with columns "timestamp" (timestamp) and "event" (string), write a code to count the number of events that occurred in each hour and display the result sorted by the hour.
+------------------------------
+
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import hour, count
+
+spark = SparkSession.builder.getOrCreate()
+
+logs_with_hour = logs.withColumn("hour", hour("timestamp"))
+event_count_df = logs_with_hour.groupBy("hour").agg(count("event").alias("event_count"))
+sorted_event_count_df = event_count_df.orderBy("hour")
+sorted_event_count_df.show()
+
+-------------------------------
+Q6.Retrieve all the customers from the "Customers" table whose age is greater than 25 and have made at least one purchase.
+
+-------------------------------
+
+SELECT *
+FROM Customers
+WHERE age > 25
+  AND customer_id IN (SELECT DISTINCT customer_id FROM Purchases);
+
+-------------------------------
+
+Q7. Find the total number of orders placed by each customer and display the results in descending order of the number of orders.
+
+--------------------------------
+
+SELECT customer_id, COUNT(*) AS order_count
+FROM Orders
+GROUP BY customer_id
+ORDER BY order_count DESC;
+
+----------------------------------
+
+Q8.Retrieve the names of all products that are currently out of stock from the "Products" table.
+
+-----------------------------------
+
+SELECT product_name
+FROM Products
+WHERE stock_quantity = 0;
+
+---------------------------------------
+
+Q9.Calculate the average price of all products in each category and display the results along with the category name.
+
+---------------------------------------
+
+SELECT Category.category_name, AVG(Products.price) AS average_price
+FROM Products
+JOIN Category ON Products.category_id = Category.category_id
+GROUP BY Category.category_name;
+
+----------------------------------------
+
+Q10.Retrieve the top 5 customers who have spent the highest total amount on purchases.
+
+-----------------------------------------
+
+SELECT customer_id, SUM(amount) AS total_amount
+FROM Purchases
+GROUP BY customer_id
+ORDER BY total_amount DESC
+LIMIT 5;
+
+------------------------------------------
