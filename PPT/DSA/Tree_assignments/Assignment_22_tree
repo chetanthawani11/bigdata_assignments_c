@@ -1,0 +1,174 @@
+Q1.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class DoublyLinkedListNode:
+    def __init__(self, val=0, prev=None, next=None):
+        self.val = val
+        self.prev = prev
+        self.next = next
+
+def convert_to_doubly_linked_list(root):
+    if not root:
+        return None
+
+    prev = None
+
+    # Helper function to perform in-order traversal and modify pointers
+    def inorder_traversal(node):
+        nonlocal prev
+
+        if not node:
+            return
+
+        # In-order traversal
+        inorder_traversal(node.left)
+
+        # Modify pointers
+        nonlocal head
+        if not prev:
+            head = DoublyLinkedListNode(node.val)
+            prev = head
+        else:
+            new_node = DoublyLinkedListNode(node.val)
+            prev.next = new_node
+            new_node.prev = prev
+            prev = new_node
+
+        inorder_traversal(node.right)
+
+    head = None
+    inorder_traversal(root)
+
+    return head
+
+
+root = TreeNode(4)
+root.left = TreeNode(2)
+root.right = TreeNode(7)
+root.left.left = TreeNode(1)
+root.left.right = TreeNode(3)
+root.right.right = TreeNode(9)
+
+dll_head = convert_to_doubly_linked_list(root)
+
+current = dll_head
+while current:
+    print(current.val, end=" ")
+    current = current.next
+
+------------------------------------------------------------------------
+
+Q2.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def flip_binary_tree(root):
+    if not root:
+        return None
+
+    if not root.left and not root.right:
+        return root
+
+    flipped_left = flip_binary_tree(root.left)
+    flipped_right = flip_binary_tree(root.right)
+
+    root.left = flipped_right
+    root.right = flipped_left
+
+    return root
+
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+root.left.left = TreeNode(4)
+root.left.right = TreeNode(5)
+root.right.right = TreeNode(6)
+
+flipped_root = flip_binary_tree(root)
+
+def print_tree(root):
+    if not root:
+        return
+
+    print(root.val)
+    print_tree(root.left)
+    print_tree(root.right)
+
+print_tree(flipped_root)
+
+
+
+
+------------------------------------------------------------------------
+
+Q3.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def print_root_to_leaf_paths(root):
+    if not root:
+        return
+
+    stack = [(root, str(root.val))]
+
+    while stack:
+        node, path = stack.pop()
+
+        if not node.left and not node.right:
+            print(path)
+        
+        if node.right:
+            stack.append((node.right, path + "->" + str(node.right.val)))
+        
+        if node.left:
+            stack.append((node.left, path + "->" + str(node.left.val)))
+ 
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+root.left.left = TreeNode(4)
+root.left.right = TreeNode(5)
+
+print_root_to_leaf_paths(root)
+
+
+
+
+------------------------------------------------------------------------
+
+Q4.
+def is_same_tree(preorder, inorder, postorder):
+    if not preorder:
+        return True
+    
+    if len(preorder) != len(inorder) or len(inorder) != len(postorder):
+        return False
+
+    if preorder[0] != postorder[-1]:
+        return False
+    
+    root_index = inorder.index(preorder[0])
+    
+    left_preorder = preorder[1:root_index+1]
+    left_inorder = inorder[:root_index]
+    left_postorder = postorder[:root_index]
+    
+    right_preorder = preorder[root_index+1:]
+    right_inorder = inorder[root_index+1:]
+    right_postorder = postorder[root_index:-1]
+    
+    return is_same_tree(left_preorder, left_inorder, left_postorder) and \
+           is_same_tree(right_preorder, right_inorder, right_postorder)
+
+
+------------------------------------------------------------------------
