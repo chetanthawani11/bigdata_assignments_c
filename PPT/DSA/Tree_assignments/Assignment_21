@@ -1,0 +1,208 @@
+Q1.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def inorder_traversal(root, values):
+    if root:
+        inorder_traversal(root.left, values)
+        values.append(root.val)
+        inorder_traversal(root.right, values)
+
+def build_bst(values):
+    if not values:
+        return None
+
+    mid = len(values) // 2
+    root = TreeNode(values[mid])
+    root.left = build_bst(values[:mid])
+    root.right = build_bst(values[mid+1:])
+
+    return root
+
+def convert_to_bst(root):
+    values = []
+    inorder_traversal(root, values)
+    sorted_values = sorted(values)
+    return build_bst(sorted_values)
+
+root = TreeNode(4)
+root.left = TreeNode(2)
+root.right = TreeNode(7)
+root.left.left = TreeNode(1)
+root.left.right = TreeNode(3)
+
+bst_root = convert_to_bst(root)
+
+--------------------------------------------------------------------------------
+
+Q2.
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def find_lca(root, key1, key2):
+    if root is None:
+        return None
+
+    if root.val < key1 and root.val < key2:
+        return find_lca(root.right, key1, key2)
+
+    if root.val > key1 and root.val > key2:
+        return find_lca(root.left, key1, key2)
+
+    return root
+
+def find_distance(root, key):
+    if root.val == key:
+        return 0
+
+    if root.val < key:
+        return 1 + find_distance(root.right, key)
+
+    return 1 + find_distance(root.left, key)
+
+def distance_between_nodes(root, key1, key2):
+    lca = find_lca(root, key1, key2)
+
+    distance1 = find_distance(lca, key1)
+    distance2 = find_distance(lca, key2)
+
+    return distance1 + distance2
+
+
+root = TreeNode(4)
+root.left = TreeNode(2)
+root.right = TreeNode(7)
+root.left.left = TreeNode(1)
+root.left.right = TreeNode(3)
+root.right.right = TreeNode(9)
+
+key1 = 1
+key2 = 9
+distance = distance_between_nodes(root, key1, key2)
+print("Distance between", key1, "and", key2, "is", distance)
+
+
+
+--------------------------------------------------------------------------------
+
+Q3.
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class DoublyLinkedListNode:
+    def __init__(self, val=0, prev=None, next=None):
+        self.val = val
+        self.prev = prev
+        self.next = next
+
+def convert_to_doubly_linked_list(root):
+    if not root:
+        return None
+
+    def inorder_traversal(node, prev):
+        nonlocal head
+
+        if not node:
+            return prev
+
+        prev = inorder_traversal(node.left, prev)
+
+        if prev:
+            prev.right = node
+        else:
+            head = node
+
+        node.left = prev
+        prev = node
+
+        prev = inorder_traversal(node.right, prev)
+
+        return prev
+
+    head = None
+    inorder_traversal(root, None)
+
+    return head
+
+
+root = TreeNode(4)
+root.left = TreeNode(2)
+root.right = TreeNode(7)
+root.left.left = TreeNode(1)
+root.left.right = TreeNode(3)
+root.right.right = TreeNode(9)
+
+dll_head = convert_to_doubly_linked_list(root)
+
+current = dll_head
+while current:
+    print(current.val, end=" ")
+    current = current.right
+
+
+--------------------------------------------------------------------------------
+
+Q4.
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None, next=None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+
+def connect_nodes_at_same_level(root):
+    if not root:
+        return root
+
+    queue = [root]
+
+    while queue:
+        level_size = len(queue)
+
+        for i in range(level_size):
+            node = queue.pop(0)
+
+            if i < level_size - 1:
+                node.next = queue[0]
+
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
+    return root
+
+
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+root.left.left = TreeNode(4)
+root.left.right = TreeNode(5)
+root.right.right = TreeNode(6)
+
+connected_root = connect_nodes_at_same_level(root)
+
+current_level_node = connected_root
+while current_level_node:
+    current = current_level_node
+    while current:
+        print(current.val, end=" ")
+        current = current.next
+    print()
+    current_level_node = current_level_node.left
+
+
+--------------------------------------------------------------------------------
