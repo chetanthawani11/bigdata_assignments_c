@@ -1,5 +1,9 @@
 Certainly! Here are the answers to the remaining questions:
 
+----------------------------------------------
+--------------easy
+----------------------------------------------
+
 1. What is Hive and why is it used?
 
 Answer:
@@ -40,6 +44,12 @@ Answer:
 - Managed Table: In Hive, a managed table (also known as an internal table) manages both the metadata and the data. When a managed table is dropped, both the metadata and the data associated with it are deleted.
 
 - External Table: An external table in Hive only manages the metadata, while the data remains external to the Hive warehouse directory. When an external table is dropped, only the metadata is deleted, and the data remains intact.
+
+
+----------------------------------------------
+--------------moderate
+----------------------------------------------
+
 
 5. How do you query data from a Hive table?
 
@@ -107,6 +117,14 @@ To optimize Hive queries for better performance, you can consider the following 
 
 Answer:
 HiveQL is a query language used in Apache Hive, which is similar to SQL but tailored specifically for querying and processing data in Hadoop. HiveQL provides SQL-like syntax and semantics, allowing users familiar with SQL to leverage their skills. However, there are some differences between HiveQL and traditional SQL. HiveQL supports additional constructs specific to Hive, such as Hadoop file formats, partitioning, and bucketing. It also integrates with the underlying MapReduce or Tez execution engines for distributed data processing.
+
+
+
+----------------------------------------------
+--------------difficult
+----------------------------------------------
+
+
 
 13. What is the Hive SerDe library? How is it used?
 
