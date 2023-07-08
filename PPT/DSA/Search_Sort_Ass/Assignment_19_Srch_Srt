@@ -1,0 +1,234 @@
+Q1.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def merge_lists(lists):
+    def merge_two_lists(l1, l2):
+        dummy = ListNode()
+        current = dummy
+
+        while l1 and l2:
+            if l1.val < l2.val:
+                current.next = l1
+                l1 = l1.next
+            else:
+                current.next = l2
+                l2 = l2.next
+            current = current.next
+
+        current.next = l1 if l1 else l2
+
+        return dummy.next
+
+    if not lists:
+        return None
+
+    n = len(lists)
+
+    while n > 1:
+        k = (n + 1) // 2
+        for i in range(n // 2):
+            lists[i] = merge_two_lists(lists[i], lists[i + k])
+        n = k
+
+    return lists[0]
+
+l1 = ListNode(1)
+l1.next = ListNode(4)
+l1.next.next = ListNode(5)
+
+l2 = ListNode(1)
+l2.next = ListNode(3)
+l2.next.next = ListNode(4)
+
+l3 = ListNode(2)
+l3.next = ListNode(6)
+
+merged = merge_lists([l1, l2, l3])
+
+while merged:
+    print(merged.val, end=" ")
+    merged = merged.next
+------------------------------------------------
+Q2.
+def count_smaller(nums):
+    n = len(nums)
+    counts = [0] * n
+    sorted_nums = []
+
+    for i in range(n - 1, -1, -1):
+        left = 0
+        right = len(sorted_nums)
+
+        while left < right:
+            mid = left + (right - left) // 2
+            if sorted_nums[mid] >= nums[i]:
+                right = mid
+            else:
+                left = mid + 1
+
+        counts[i] = left
+        sorted_nums.insert(left, nums[i])
+
+    return counts
+
+nums = [5, 2, 6, 1]
+result = count_smaller(nums)
+print("Number of smaller elements to the right:", result)
+
+
+------------------------------------------------
+
+Q3.
+def quicksort(nums):
+    def partition(left, right):
+        pivot = nums[left]
+        i = left + 1
+        j = right
+
+        while True:
+            while i <= j and nums[i] < pivot:
+                i += 1
+            while i <= j and nums[j] > pivot:
+                j -= 1
+            if i > j:
+                break
+            nums[i], nums[j] = nums[j], nums[i]
+
+        nums[left], nums[j] = nums[j], nums[left]
+        return j
+
+    def sort(left, right):
+        if left < right:
+            pivot_index = partition(left, right)
+            sort(left, pivot_index - 1)
+            sort(pivot_index + 1, right)
+
+    sort(0, len(nums) - 1)
+    return nums
+
+nums = [5, 2, 6, 1]
+sorted_nums = quicksort(nums)
+print("Sorted array:", sorted_nums)
+
+
+------------------------------------------------
+
+Q4.
+def push_zeros_to_end(nums):
+    n = len(nums)
+    next_non_zero = 0
+
+    for i in range(n):
+        if nums[i] != 0:
+            nums[next_non_zero] = nums[i]
+            next_non_zero += 1
+
+    while next_non_zero < n:
+        nums[next_non_zero] = 0
+        next_non_zero += 1
+
+    return nums
+
+nums = [1, 9, 8, 4, 0, 0, 2, 7, 0, 6, 0]
+result = push_zeros_to_end(nums)
+print("Array after pushing zeros to the end:", result)
+
+
+------------------------------------------------
+
+Q5.
+def alternate_positive_negative(nums):
+    n = len(nums)
+    positive = [num for num in nums if num > 0]
+    negative = [num for num in nums if num < 0]
+    result = []
+
+    i = 0
+    while i < len(positive) and i < len(negative):
+        result.append(positive[i])
+        result.append(negative[i])
+        i += 1
+
+    result.extend(positive[i:])
+    result.extend(negative[i:])
+
+    return result
+
+nums = [1, -2, 3, -4, 5, -6]
+arranged_nums = alternate_positive_negative(nums)
+print("Array after arranging positive and negative numbers:", arranged_nums)
+
+
+------------------------------------------------
+
+Q6.
+def merge_sorted_arrays(nums1, nums2):
+    merged = []
+    i = 0
+    j = 0
+
+    while i < len(nums1) and j < len(nums2):
+        if nums1[i] <= nums2[j]:
+            merged.append(nums1[i])
+            i += 1
+        else:
+            merged.append(nums2[j])
+            j += 1
+
+    while i < len(nums1):
+        merged.append(nums1[i])
+        i += 1
+
+    while j < len(nums2):
+        merged.append(nums2[j])
+        j += 1
+
+    return merged
+
+nums1 = [1, 3, 5]
+nums2 = [2, 4, 6]
+merged_array = merge_sorted_arrays(nums1, nums2)
+print("Merged array:", merged_array)
+
+
+------------------------------------------------
+
+Q7.
+def intersection(nums1, nums2):
+    set1 = set(nums1)
+    set2 = set(nums2)
+    return list(set1.intersection(set2))
+
+nums1 = [1, 2, 2, 1]
+nums2 = [2, 2, 3]
+intersection_result = intersection(nums1, nums2)
+print("Intersection:", intersection_result)
+
+
+------------------------------------------------
+
+Q8.
+def intersect(nums1, nums2):
+    count1 = {}
+    result = []
+
+    for num in nums1:
+        count1[num] = count1.get(num, 0) + 1
+
+    for num in nums2:
+        if num in count1 and count1[num] > 0:
+            result.append(num)
+            count1[num] -= 1
+
+    return result
+
+nums1 = [1, 2, 2, 1]
+nums2 = [2, 2, 3]
+intersection_result = intersect(nums1, nums2)
+print("Intersection:", intersection_result)
+
+
+------------------------------------------------
