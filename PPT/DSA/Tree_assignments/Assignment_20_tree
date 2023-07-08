@@ -1,0 +1,86 @@
+Q1.
+def intersect(nums1, nums2):
+    count1 = {}
+    result = []
+    for num in nums1:
+        count1[num] = count1.get(num, 0) + 1
+
+    for num in nums2:
+        if num in count1 and count1[num] > 0:
+            result.append(num)
+            count1[num] -= 1
+
+    return result
+
+nums1 = [1, 2, 2, 1]
+nums2 = [2, 2, 3]
+intersection_result = intersect(nums1, nums2)
+print("Intersection:", intersection_result)
+
+-------------------------------------------------------------------
+Q2.
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def construct_bst(level_order):
+    if not level_order:
+        return None
+
+    root = TreeNode(level_order[0])
+    queue = [root]
+    i = 1
+
+    while i < len(level_order):
+        node = queue.pop(0)
+
+        if i < len(level_order) and level_order[i] is not None:
+            node.left = TreeNode(level_order[i])
+            queue.append(node.left)
+        i += 1
+
+        if i < len(level_order) and level_order[i] is not None:
+            node.right = TreeNode(level_order[i])
+            queue.append(node.right)
+        i += 1
+
+    return root
+
+level_order = [4, 2, 6, 1, 3, 5, 7]
+bst_root = construct_bst(level_order)
+
+
+
+-------------------------------------------------------------------
+Q3.
+def is_bst_level_order(level_order):
+    n = len(level_order)
+
+    if n == 0 or n == 1:
+        return True
+
+    i = 1
+
+    while i < n and level_order[i] < level_order[0]:
+        i += 1
+
+    for j in range(i, n):
+        if level_order[j] < level_order[0]:
+            return False
+
+    left_bst = True
+    if i > 1:
+        left_bst = is_bst_level_order(level_order[1:i])
+
+    right_bst = True
+    if i < n:
+        right_bst = is_bst_level_order(level_order[i:])
+
+    return left_bst and right_bst
+
+level_order = [7, 4, 9, 2, 6, 8, 10]
+is_bst = is_bst_level_order(level_order)
+print("Can represent level order traversal of BST:", is_bst)
