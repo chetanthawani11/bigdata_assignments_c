@@ -1,0 +1,160 @@
+Q1.
+def calculate_depth(preorder):
+    if not preorder:
+        return 0
+
+    depth = [0]
+    def traverse_tree(preorder, index, current_depth):
+        if index >= len(preorder):
+            return index
+
+        if preorder[index] == 'n':
+            depth[0] = max(depth[0], current_depth)  
+            index = traverse_tree(preorder, index + 1, current_depth + 1)
+
+            index = traverse_tree(preorder, index + 1, current_depth + 1)
+
+        return index
+
+    traverse_tree(preorder, 0, 0)
+
+    return depth[0]
+
+preorder = 'nlnll' 
+depth = calculate_depth(preorder)
+
+print("Depth of the binary tree:", depth)
+
+
+-----------------------------------------------------------------------
+
+Q2.
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def print_left_view(root):
+    if not root:
+        return
+
+    queue = [(root, 0)]  # Queue to store nodes and their levels
+
+    left_view_dict = {}
+
+    while queue:
+        node, level = queue.pop(0)
+
+        if level not in left_view_dict:
+            left_view_dict[level] = node.val
+
+        if node.left:
+            queue.append((node.left, level + 1))
+        if node.right:
+            queue.append((node.right, level + 1))
+
+    for level, value in left_view_dict.items():
+        print(value)
+
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+root.left.left = TreeNode(4)
+root.left.right = TreeNode(5)
+root.right.right = TreeNode(6)
+
+print("Left view of the binary tree:")
+print_left_view(root)
+
+
+-----------------------------------------------------------------------
+
+Q3.
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def print_right_view(root):
+    if not root:
+        return
+
+    queue = [(root, 0)]  # Queue to store nodes and their levels
+
+    right_view_dict = {}
+
+    while queue:
+        node, level = queue.pop(0)
+
+        right_view_dict[level] = node.val
+
+        if node.left:
+            queue.append((node.left, level + 1))
+        if node.right:
+            queue.append((node.right, level + 1))
+
+    for level in range(max(right_view_dict.keys()) + 1):
+        print(right_view_dict[level])
+
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+root.left.left = TreeNode(4)
+root.left.right = TreeNode(5)
+root.right.right = TreeNode(6)
+
+print("Right view of the binary tree:")
+print_right_view(root)
+
+
+
+-----------------------------------------------------------------------
+
+Q4.
+
+from collections import deque
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def print_bottom_view(root):
+    if not root:
+        return
+
+    queue = deque([(root, 0)])  # Queue to store nodes and their horizontal distances
+
+    bottom_view_dict = {}
+
+    while queue:
+        node, hd = queue.popleft()
+
+        bottom_view_dict[hd] = node.val
+
+        if node.left:
+            queue.append((node.left, hd - 1))
+        if node.right:
+            queue.append((node.right, hd + 1))
+
+    for hd in sorted(bottom_view_dict.keys()):
+        print(bottom_view_dict[hd])
+
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+root.left.left = TreeNode(4)
+root.left.right = TreeNode(5)
+root.right.right = TreeNode(6)
+
+print("Bottom view of the binary tree:")
+print_bottom_view(root)
+
+
+
+-----------------------------------------------------------------------
